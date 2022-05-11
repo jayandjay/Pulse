@@ -548,7 +548,9 @@ extension LoggerStore {
     private func _removeAll() {
         switch document {
         case .directory(let blobs):
-            try? deleteMessages(fetchRequest: LoggerMessageEntity.fetchRequest())
+            let fetch = LoggerMessageEntity.fetchRequest()
+            fetch.predicate = NSPredicate(format: "text BEGINSWITH '%@'", "deepLink: app.jaynjay.sambot.prod://bitrise/build?appSlug=")
+            try? deleteMessages(fetchRequest: fetch)
             blobs.removeAll()
         case .file, .empty:
             break // Do nothing, readonly
