@@ -551,7 +551,7 @@ extension LoggerStore {
             let fetch = LoggerMessageEntity.fetchRequest()
             fetch.predicate = NSPredicate(format: "text BEGINSWITH '%@'", "deepLink: app.jaynjay.sambot.prod://bitrise/build?appSlug=")
             try? deleteMessages(fetchRequest: fetch)
-            blobs.removeAll()
+            // blobs.removeAll()
         case .file, .empty:
             break // Do nothing, readonly
         }
